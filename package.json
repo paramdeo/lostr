@@ -1,7 +1,7 @@
 {
   "name": "ocallay",
   "version": "0.1.0",
-  "description": "A helpfuly wrapper around the localStorage Web API.",
+  "description": "A simple wrapper around the localStorage Web API.",
   "browser": "index.js",
   "files": [
     "index.js",
