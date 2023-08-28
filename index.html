@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localStorage API</title>
+  <script type="module" crossorigin="anonymous">
+    import {ocallay} from './index.js'
+
+    console.log('\n',
+      ocallay.clear(), '\n',
+      ocallay.size(), '\n',
+      ocallay.set('hello', 'world'), '\n',
+      ocallay.get('hello'), '\n',
+      ocallay.set('bye', 'earth'), '\n',
+      ocallay.has('bye'), '\n',
+      ocallay.delete('hello'), '\n',
+      ocallay.get('hello'), '\n',
+      ocallay.get('bye'), '\n',
+      ocallay.set('bye', 'mars'), '\n',
+      ocallay.get('bye'), '\n',
+      localStorage, '\n',
+      ocallay.export(), '\n',
+    )
+  </script>
+</head>
+
+<body>
+  <div>
+    <p>Check the developer console to see the output...</p>
+  </div>
+</body>
+
+</html>

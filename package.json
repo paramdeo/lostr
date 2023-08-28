@@ -1,0 +1,31 @@
+{
+  "name": "ocallay",
+  "version": "0.1.0",
+  "description": "A helpfuly wrapper around the localStorage Web API.",
+  "browser": "index.js",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "index.d.ts.map",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paramdeo/ocallay.git"
+  },
+  "keywords": [
+    "javascript",
+    "localstorage",
+    "wrapper"
+  ],
+  "author": "Paramdeo Singh <paramdeo@paramdeo.com> (https://paramdeo.com)",
+  "license": "APGL-3.0",
+  "bugs": {
+    "url": "https://github.com/paramdeo/ocallay/issues"
+  },
+  "homepage": "https://ocallay.page"
+}
