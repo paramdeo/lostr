@@ -8,7 +8,7 @@
   <script type="module" crossorigin="anonymous">
     import {StorageLocal} from './index.js'
 
-    let ocallay = new StorageLocal()
+    let ocallay = new StorageLocal({logging: true})
 
     console.log('\n',
       ocallay.clear(), '\n',

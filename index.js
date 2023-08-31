@@ -1,5 +1,3 @@
-// https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#feature-detecting_localstorage
-
 function storageAvailable (type) {
   let storage
   try {
@@ -38,20 +36,29 @@ const { success, failure } = {
   failure: 'FAIL'
 }
 
-export function StorageLocal() {}
+export function StorageLocal({ logging } = { logging: false }) {
+  this.logging = logging
+}
 
 StorageLocal.prototype.size = function() {
   checkLocalStorage()
-  return localStorage.length
+  try {
+    return localStorage.length
+  } catch (err) {
+    throw new Error(err)
+  } finally {
+    console.log(this.logging) // todo add logging etc.
+  }
 }
 
 StorageLocal.prototype.set = function(key, value) {
   checkLocalStorage()
-  localStorage.setItem(key, value)
-  if (localStorage.getItem(key)) {
-    return success
-  } else {
-    throw new Error(failure)
+  try {
+    localStorage.setItem(key, value)
+  } catch (err) {
+    throw new Error(err)
+  } finally {
+    return localStorage.getItem(key) !== undefined ? success : failure
   }
 }
 
@@ -62,86 +69,41 @@ StorageLocal.prototype.get = function(key) {
 
 StorageLocal.prototype.delete = function(key) {
   checkLocalStorage()
-  localStorage.removeItem(key)
-  if (!localStorage.getItem(key)) {
-    return success
-  } else {
-    throw new Error(failure)
+  try {
+    localStorage.removeItem(key)
+  } catch (err) {
+    throw new Error(err)
+  } finally {
+    return localStorage.getItem(key) ? failure : success
   }
 }
 
 StorageLocal.prototype.clear = function() {
   checkLocalStorage()
-  localStorage.clear()
-  if (!localStorage.length) {
-    return success
-  } else {
-    throw new Error(failure)
+  try {
+    localStorage.clear()
+  } catch (err) {
+    throw new Error(err)
+  } finally {
+    return localStorage.length === 0 ? success : failure
   }
 }
 
 StorageLocal.prototype.has = function(key) {
   checkLocalStorage()
-  let item = localStorage.getItem(key)
-  return item === undefined
+  try {
+    let item = localStorage.getItem(key)
+    return item === undefined
+  } catch (err) {
+    throw new Error(err)
+  }
 }
 
 StorageLocal.prototype.export = function() {
   checkLocalStorage()
-  return { ...localStorage }
-}
-
-/*
-export const ocallay = {
-  size () {
-    checkLocalStorage()
-    return localStorage.length
-  },
-
-  set (key, value) {
-    checkLocalStorage()
-    localStorage.setItem(key, value)
-    if (localStorage.getItem(key)) {
-      return success
-    } else {
-      throw new Error(failure)
-    }
-  },
-
-  get (key) {
-    checkLocalStorage()
-    return localStorage.getItem(key)
-  },
-
-  delete (key) {
-    checkLocalStorage()
-    localStorage.removeItem(key)
-    if (!localStorage.getItem(key)) {
-      return success
-    } else {
-      throw new Error(failure)
-    }
-  },
-
-  clear () {
-    checkLocalStorage()
-    localStorage.clear()
-    if (localStorage.length === 0) {
-      return success
-    } else {
-      throw new Error(failure)
-    }
-  },
-
-  has (key) {
-    checkLocalStorage()
-    return localStorage.getItem(key)
-  },
-
-  export (key) {
-    checkLocalStorage()
-    const result = { ...localStorage }
-    return result
+  try {
+    return { ...JSON.parse(JSON.stringify(localStorage)) }
+  } catch (err) {
+    throw new Error(err)
   }
 }
-*/
