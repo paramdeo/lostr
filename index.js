@@ -36,11 +36,11 @@ const { success, failure } = {
   failure: 'FAIL'
 }
 
-export function StorageLocal({ logging } = { logging: false }) {
+export function LoStr({ logging } = { logging: false }) {
   this.logging = logging
 }
 
-StorageLocal.prototype.size = function() {
+LoStr.prototype.size = function() {
   checkLocalStorage()
   try {
     return localStorage.length
@@ -51,7 +51,7 @@ StorageLocal.prototype.size = function() {
   }
 }
 
-StorageLocal.prototype.set = function(key, value) {
+LoStr.prototype.set = function(key, value) {
   checkLocalStorage()
   try {
     localStorage.setItem(key, value)
@@ -62,12 +62,12 @@ StorageLocal.prototype.set = function(key, value) {
   }
 }
 
-StorageLocal.prototype.get = function(key) {
+LoStr.prototype.get = function(key) {
   checkLocalStorage()
   return localStorage.getItem(key) ?? failure
 }
 
-StorageLocal.prototype.delete = function(key) {
+LoStr.prototype.delete = function(key) {
   checkLocalStorage()
   try {
     localStorage.removeItem(key)
@@ -78,7 +78,7 @@ StorageLocal.prototype.delete = function(key) {
   }
 }
 
-StorageLocal.prototype.clear = function() {
+LoStr.prototype.clear = function() {
   checkLocalStorage()
   try {
     localStorage.clear()
@@ -89,7 +89,7 @@ StorageLocal.prototype.clear = function() {
   }
 }
 
-StorageLocal.prototype.has = function(key) {
+LoStr.prototype.has = function(key) {
   checkLocalStorage()
   try {
     let item = localStorage.getItem(key)
@@ -99,7 +99,7 @@ StorageLocal.prototype.has = function(key) {
   }
 }
 
-StorageLocal.prototype.export = function() {
+LoStr.prototype.export = function() {
   checkLocalStorage()
   try {
     return { ...JSON.parse(JSON.stringify(localStorage)) }

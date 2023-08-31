@@ -6,27 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>localStorage API</title>
   <script type="module" crossorigin="anonymous">
-    import {StorageLocal} from './index.js'
+    import {LoStr} from './index.js'
 
-    let ocallay = new StorageLocal({logging: true})
+    let local = new LoStr({logging: true})
 
     console.log('\n',
-      ocallay.clear(), '\n',
-      ocallay.size(), '\n',
-      ocallay.set('hello', 'world'), '\n',
-      ocallay.get('hello'), '\n',
-      ocallay.set('bye', 'earth'), '\n',
-      ocallay.has('bye'), '\n',
-      ocallay.delete('hello'), '\n',
-      ocallay.get('hello'), '\n',
-      ocallay.get('bye'), '\n',
-      ocallay.set('bye', 'mars'), '\n',
-      ocallay.get('bye'), '\n',
-      ocallay.get('null'), '\n',
-      ocallay.has('null'), '\n',
+      local.clear(), '\n',
+      local.size(), '\n',
+      local.set('hello', 'world'), '\n',
+      local.get('hello'), '\n',
+      local.set('bye', 'earth'), '\n',
+      local.has('bye'), '\n',
+      local.delete('hello'), '\n',
+      local.get('hello'), '\n',
+      local.get('bye'), '\n',
+      local.set('bye', 'mars'), '\n',
+      local.get('bye'), '\n',
+      local.get('null'), '\n',
+      local.has('null'), '\n',
       localStorage, '\n',
-      ocallay.export(), '\n',
-    )
+      local.export(), '\n',)
   </script>
 </head>
 
