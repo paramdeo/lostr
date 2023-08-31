@@ -38,6 +38,60 @@ const { success, failure } = {
   failure: 'FAIL'
 }
 
+export function StorageLocal() {}
+
+StorageLocal.prototype.size = function() {
+  checkLocalStorage()
+  return localStorage.length
+}
+
+StorageLocal.prototype.set = function(key, value) {
+  checkLocalStorage()
+  localStorage.setItem(key, value)
+  if (localStorage.getItem(key)) {
+    return success
+  } else {
+    throw new Error(failure)
+  }
+}
+
+StorageLocal.prototype.get = function(key) {
+  checkLocalStorage()
+  return localStorage.getItem(key) ?? failure
+}
+
+StorageLocal.prototype.delete = function(key) {
+  checkLocalStorage()
+  localStorage.removeItem(key)
+  if (!localStorage.getItem(key)) {
+    return success
+  } else {
+    throw new Error(failure)
+  }
+}
+
+StorageLocal.prototype.clear = function() {
+  checkLocalStorage()
+  localStorage.clear()
+  if (!localStorage.length) {
+    return success
+  } else {
+    throw new Error(failure)
+  }
+}
+
+StorageLocal.prototype.has = function(key) {
+  checkLocalStorage()
+  let item = localStorage.getItem(key)
+  return item === undefined
+}
+
+StorageLocal.prototype.export = function() {
+  checkLocalStorage()
+  return { ...localStorage }
+}
+
+/*
 export const ocallay = {
   size () {
     checkLocalStorage()
@@ -90,3 +144,4 @@ export const ocallay = {
     return result
   }
 }
+*/
